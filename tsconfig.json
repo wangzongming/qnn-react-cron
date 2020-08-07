@@ -1,0 +1,31 @@
+{
+    "workers": 4,
+    "async": false,
+    "useTypescriptIncrementalApi": true,
+    "watch": [
+        "src",
+    ],
+    "isolatedModules": false,
+    "compilerOptions": {
+        "module": "esnext",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": false,
+        // noEmit: true,
+        "watch": true,
+        "jsx": "preserve",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "types": [
+            "jquery", 
+            "node",
+            "electron"
+        ]
+    }
+}
