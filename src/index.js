@@ -21,11 +21,10 @@ function Cron(props) {
     const [day,setDay] = useState('*');
     const [month,setMonth] = useState('*');
     const [week,setWeek] = useState('?');
-    const [year,setYear] = useState('*');
-    const isFirstRender = React.useRef();
+    const [year,setYear] = useState('*'); 
 
     const onParse = () => {
-        return new Promise((resolve,reject) => {
+        return new Promise((resolve) => {
             if (value) {
                 try {
                     let [secondVal,minuteValue,hourVal,dayVal,monthVal,weekVal,yearVal] = value.split(' ');
@@ -56,7 +55,7 @@ function Cron(props) {
                     setMonth('*');
                     setWeek('?');
                     setYear('*');
-                    reject({})
+                    resolve({})
                 }
             } else {
                 setSecond('*');
@@ -66,7 +65,7 @@ function Cron(props) {
                 setMonth('*');
                 setWeek('?');
                 setYear('*');
-                reject({})
+                resolve({})
             }
         })
     };
@@ -99,14 +98,7 @@ function Cron(props) {
         })
     });
 
-    useEffect(() => {
-        // if (isFirstRender.current !== false) {
-        //     isFirstRender.current = true;
-        // }
-        // if (isFirstRender.current) {
-        //     onParse();
-        //     isFirstRender.current = false; 
-        // } 
+    useEffect(() => { 
         onParse();
     },[value]);
 

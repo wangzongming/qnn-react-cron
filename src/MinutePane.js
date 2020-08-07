@@ -43,7 +43,7 @@ function MinutePane(props) {
 
     useEffect(() => {
         //首次渲染不能走这块 否则会死循环
-        if (isFirstRender.current) {
+        if (!isFirstRender.current) {
             switch (currentRadio) {
                 case 1:
                     onChange('*');
