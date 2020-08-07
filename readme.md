@@ -23,6 +23,10 @@
 
     yarn add qnn-react-cron | npm i qnn-react-cron
 
+### 预览地址
+
+<a href="https://codesandbox.io/s/qnn-react-cron-fxvbp">codesandbox 点击直达</a>
+
 ### 使用
 
 ```jsx

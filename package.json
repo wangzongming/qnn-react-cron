@@ -5,9 +5,6 @@
     "author": "wangzongming",
     "license": "MIT",
     "repository": "https://github.com/wangzongming/qnn-react-cron",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
-    },
     "main": "dist/cjs/index.js",
     "module": "dist/es/index.js",
     "jsnext:main": "dist/es/index.js",
