@@ -1,5 +1,7 @@
 
-### 0.3.3
+### 0.4.3
+
+    调整 使用 antd less 样式
 
     新增 panesShow 下的属性设置为 false 可使面板不显示 
     新增 defaultTab 配置默认显示哪个面板 

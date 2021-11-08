@@ -133,8 +133,7 @@ function WeekPane(props) {
 	const aStartTobB = <WeekSelect disabled={currentRadio !== 4} value={dayOfWeek} size="small" onChange={onChangeDayOfWeek} style={{ width: 100 }} />;
 
 	const aStartTob2A = <WeekSelect disabled={currentRadio !== 5} value={lastWeekOfMonth} size="small" onChange={onChangeLastWeekOfMonth} style={{ width: 100 }} />;
- 
-    console.log(currentRadio)
+  
 	return (
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio} style={{ width: "100%" }}>
 			<Radio style={radioStyle} value={1}>

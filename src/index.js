@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Tabs, Button } from "antd";
-import styles from "./index.less";
 import SecondPane from "./SecondPane";
 import MinutePane from "./MinutePane";
 import HourPane from "./HourPane";
@@ -9,17 +8,18 @@ import MonthPane from "./MonthPane";
 import WeekPane from "./WeekPane";
 import YearPane from "./YearPanel";
 import { secondRegex, minuteRegex, hourRegex, dayRegex, monthRegex, weekRegex, yearRegex } from "./cron-regex";
+import "./index.less"; 
 
 import QnnReactCronContext from "./GlobalContext";
 QnnReactCronContext.displayName = "qnn-react-cron config provider";
 const QnnReactCronContextProvider = QnnReactCronContext.Provider;
-
+ 
 const { TabPane } = Tabs;
 
 function Cron(props) {
-	const {
-		language: { paneTitle = {} },
-	} = useContext(QnnReactCronContext);
+	const { language = {} } = useContext(QnnReactCronContext);
+	const { paneTitle = {} } = language;
+
 	const { style, value, onOk, footer, getCronFns, panesShow = {}, defaultTab = "second" } = props;
 	const [currentTab, setCurrentTab] = useState(defaultTab);
 	const [second, setSecond] = useState("*");
@@ -115,10 +115,21 @@ function Cron(props) {
 	useEffect(() => {
 		onParse();
 	}, [value]);
-
+ 
 	return (
-		<div className={styles.cron} style={style}>
-			<Tabs activeKey={currentTab} onChange={setCurrentTab} className={styles.Tabs}>
+		<div
+			className={
+				// styles.cron
+				"qnn-react-cron"
+			}
+			style={style}
+		>
+			<Tabs
+				activeKey={currentTab}
+				onChange={setCurrentTab}
+				// className={styles.Tabs}
+				className={"Tabs"}
+			>
 				{panesShow.second !== false && (
 					<TabPane tab={paneTitle.second || "秒"} key="second">
 						<SecondPane value={second} onChange={setSecond} />
@@ -155,7 +166,8 @@ function Cron(props) {
 					</TabPane>
 				)}
 			</Tabs>
-			<div className={styles.footer}>
+			{/* <div className={styles.footer}> */}
+			<div className={"footer"}>
 				{footer === false || footer === null || footer ? (
 					footer
 				) : (

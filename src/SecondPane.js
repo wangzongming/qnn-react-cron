@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
 import { Radio, Checkbox, Row, Col, InputNumber } from "antd";
 import GlobalContext from "./GlobalContext";
-
 const RadioGroup = Radio.Group;
 const CheckboxGroup = Checkbox.Group;
 
@@ -115,6 +114,8 @@ function SecondPane(props) {
 
 	const aStartTobA = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offsetFrom} size="small" onChange={onChangeOffsetFrom} style={{ width: 100 }} />;
 	const aStartTobB = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offset} size="small" onChange={onChangeOffset} style={{ width: 100 }} />;
+	
+	// return <InputNumber />
 
 	return (
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio}>
