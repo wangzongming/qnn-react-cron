@@ -42,8 +42,8 @@ export default ()=>{
     // language 为可选参数， 具体配置如下
     const language = {
 
-        // 面板标题, 设置为 false 即可实现不显示该面板
-        // panel title, set to false does not display can be realized
+        // 面板标题,  
+        // panel title,  
         paneTitle:{
             second: "秒",
             minute: "分",
