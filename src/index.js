@@ -20,8 +20,8 @@ function Cron(props) {
 	const {
 		language: { paneTitle = {} },
 	} = useContext(QnnReactCronContext);
-	const { style, value, onOk, footer, getCronFns } = props;
-	const [currentTab, setCurrentTab] = useState("1");
+	const { style, value, onOk, footer, getCronFns, panesShow = {}, defaultTab = "second" } = props;
+	const [currentTab, setCurrentTab] = useState(defaultTab);
 	const [second, setSecond] = useState("*");
 	const [minute, setMinute] = useState("*");
 	const [hour, setHour] = useState("*");
@@ -119,27 +119,41 @@ function Cron(props) {
 	return (
 		<div className={styles.cron} style={style}>
 			<Tabs activeKey={currentTab} onChange={setCurrentTab} className={styles.Tabs}>
-				<TabPane tab={paneTitle.second || "秒"} key="1">
-					<SecondPane value={second} onChange={setSecond} />
-				</TabPane>
-				<TabPane tab={paneTitle.minute || "分"} key="2">
-					<MinutePane value={minute} onChange={setMinute} />
-				</TabPane>
-				<TabPane tab={paneTitle.hour || "时"} key="3">
-					<HourPane value={hour} onChange={setHour} />
-				</TabPane>
-				<TabPane tab={paneTitle.day || "日"} key="4">
-					<DayPane value={day} onChange={onChangeDay} />
-				</TabPane>
-				<TabPane tab={paneTitle.month || "月"} key="5">
-					<MonthPane value={month} onChange={setMonth} />
-				</TabPane>
-				<TabPane tab={paneTitle.week || "周"} key="6">
-					<WeekPane value={week} onChange={onChangeWeek} />
-				</TabPane>
-				<TabPane tab={paneTitle.year || "年"} key="7">
-					<YearPane value={year} onChange={setYear} />
-				</TabPane>
+				{panesShow.second !== false && (
+					<TabPane tab={paneTitle.second || "秒"} key="second">
+						<SecondPane value={second} onChange={setSecond} />
+					</TabPane>
+				)}
+				{panesShow.minute !== false && (
+					<TabPane tab={paneTitle.minute || "分"} key="minute">
+						<MinutePane value={minute} onChange={setMinute} />
+					</TabPane>
+				)}
+				{panesShow.hour !== false && (
+					<TabPane tab={paneTitle.hour || "时"} key="hour">
+						<HourPane value={hour} onChange={setHour} />
+					</TabPane>
+				)}
+				{panesShow.day !== false && (
+					<TabPane tab={paneTitle.day || "日"} key="day">
+						<DayPane value={day} onChange={onChangeDay} />
+					</TabPane>
+				)}
+				{panesShow.month !== false && (
+					<TabPane tab={paneTitle.month || "月"} key="month">
+						<MonthPane value={month} onChange={setMonth} />
+					</TabPane>
+				)}
+				{panesShow.week !== false && (
+					<TabPane tab={paneTitle.week || "周"} key="week">
+						<WeekPane value={week} onChange={onChangeWeek} />
+					</TabPane>
+				)}
+				{panesShow.year !== false && (
+					<TabPane tab={paneTitle.year || "年"} key="year">
+						<YearPane value={year} onChange={setYear} />
+					</TabPane>
+				)}
 			</Tabs>
 			<div className={styles.footer}>
 				{footer === false || footer === null || footer ? (

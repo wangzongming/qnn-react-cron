@@ -129,19 +129,11 @@ export default {
                     {
                         libraryName: "antd",
                         libraryDirectory: "es",
-                        style: "css"
+                        style: "css" 
+                        // style: "less"
                     },
                     "ant"
-                ],
-                [
-                    "import",
-                    {
-                        libraryName: "antd-mobile",
-                        libraryDirectory: "es",
-                        style: "css"
-                    },
-                    "antd-mobile"
-                ]
+                ] 
             ]
         }),
         commonjs(), 

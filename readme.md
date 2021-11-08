@@ -41,8 +41,9 @@ export default ()=>{
 
     // language 为可选参数， 具体配置如下
     const language = {
-        
-        // 面板标题
+
+        // 面板标题, 设置为 false 即可实现不显示该面板
+        // panel title, set to false does not display can be realized
         paneTitle:{
             second: "秒",
             minute: "分",
@@ -152,19 +153,37 @@ export default ()=>{
                 </span>
             ),
         }
-						
+
     };
 
     return <QnnReactCron.Provider value={{language}}>
             <Cron
                 value="* * * * * ? *"
-                
+
+                // 配置面板的隐藏, false 即隐藏
+                // Configuration panel hiding
+                panesShow={{
+                    second: true,
+                    minute:true,
+                    hour: true,
+                    day: true,
+                    month:true,
+                    week:true,
+                    year:true,
+                }}
+
+                // 默认显示哪个面板, 默认为 second， 如果隐藏了 second 需要自行设置
+                // The default is second. If second is hidden, you need to set it by yourself
+                defaultTab={"second"}
+
                 // 未自定义底部按钮时，用户点击确认按钮后的回调
+                // The bottom button is not customized when the user clicks the confirm button after the callback
                 onOk={(value) => {
                     console.log("cron:", value);
                 }}
 
                 // 相当于 ref
+                // equivalent to ref
                 getCronFns={(fns) => {
                     // 获取值方法
                     // fns.getValue: () => string
@@ -175,6 +194,7 @@ export default ()=>{
                 }}
 
                 // 自定义底部按钮后需要自行调用方法来或者值
+                // After customizing the bottom button, you need to call the method or value
                 footer={
                     [
                         //默认值
