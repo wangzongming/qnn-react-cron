@@ -1,31 +1,42 @@
 {
-    "workers": 4,
-    "async": false,
-    "useTypescriptIncrementalApi": true,
-    "watch": [
-        "src",
-    ],
-    "isolatedModules": false,
-    "compilerOptions": {
-        "module": "esnext",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "skipLibCheck": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": false,
-        // noEmit: true,
-        "watch": true,
-        "jsx": "preserve",
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "types": [
-            "jquery", 
-            "node",
-            "electron"
-        ]
-    }
+	"workers": 4,
+	"async": false,
+	"useTypescriptIncrementalApi": true,
+	"watch": ["src"],
+	"isolatedModules": false,
+	"compilerOptions": {
+		"outDir": "./dist/es",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "esnext", // 编译目标
+		"module": "esnext",
+		"noImplicitAny": true,
+		"preserveConstEnums": true,
+		"skipLibCheck": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": false,
+		"declaration": true,
+		"removeComments": false,
+		"emitDeclarationOnly": true,
+		"declarationDir": "dist/es",
+		"incremental": true,
+		"watch": true,
+		"jsx": "preserve",
+		"typeRoots": ["node_modules/@types"],
+		"types": ["node"],
+		"lib": ["dom", "es2017", "ES2015"]
+	},
+	"files": [
+		"index.d.ts"
+	],
+	"exclude": [
+		"tests",
+		"node_modules",
+		"lib",
+		"es",
+		"./dist/**/*", // 不排除将会收到重新文件的报错
+		"./emitDeclaration.js"
+	],
+	"toc": []
 }

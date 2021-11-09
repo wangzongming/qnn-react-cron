@@ -1,6 +1,7 @@
 
-### 0.4.3
+### 0.5.3
 
+    调整 typescript 文件
     调整 使用 antd less 样式
 
     新增 panesShow 下的属性设置为 false 可使面板不显示 

@@ -165,8 +165,7 @@ function Cron(props) {
 						<YearPane value={year} onChange={setYear} />
 					</TabPane>
 				)}
-			</Tabs>
-			{/* <div className={styles.footer}> */}
+			</Tabs> 
 			<div className={"footer"}>
 				{footer === false || footer === null || footer ? (
 					footer
@@ -184,7 +183,5 @@ function Cron(props) {
 		</div>
 	);
 }
-
 Cron.Provider = QnnReactCronContextProvider;
-
 export default Cron;

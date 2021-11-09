@@ -18,6 +18,8 @@
 -   🎉 日及周条件互斥，自动改变响应值
 -   🎉 支持反解析 cron 表达式到 UI
 -   🎉 可结合此组件与 Antd 的下拉及输入组件封装成下拉输入框
+-   🎉 国际化支持
+-   🎉 TypeScript 支持
 
 ### 安装
 
@@ -210,6 +212,12 @@ export default ()=>{
     </QnnReactCron.Provider>
 }
 ```
+
+### TypeScript 接口
+
+    // CronProps 组件接受的 props
+    // CronFns 实际上是组件的 ref
+    import { CronProps, CronFns } form "qnn-react-cron"
 
 ### LICENSE
 

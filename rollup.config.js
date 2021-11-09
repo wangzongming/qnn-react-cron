@@ -9,6 +9,7 @@ import svgr from "@svgr/rollup";
 import image from "@rollup/plugin-image";
 // import typescript2 from 'rollup-plugin-typescript2';
 import { terser } from "rollup-plugin-terser";
+import emitDeclaration from "../../lib/emitDeclaration";
 const fs = require("fs");
 const path = require("path");
 
@@ -126,6 +127,9 @@ export default {
 			],
 		}),
 		commonjs(),
+		
+		//生成d.ts文件
+		// emitDeclaration(),
 		production && terser(), // minify, but only in production
 	],
 };

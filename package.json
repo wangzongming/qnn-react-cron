@@ -1,13 +1,14 @@
 {
     "name": "qnn-react-cron",
-    "version": "0.4.3",
+    "version": "0.5.3",
     "description": "",
     "author": "wangzongming",
     "license": "MIT",
     "repository": "https://github.com/wangzongming/qnn-react-cron",
     "main": "dist/cjs/index.js",
     "module": "dist/es/index.js",
-    "jsnext:main": "dist/es/index.js",
+    "jsnext:main": "dist/es/index.js", 
+    "typings": "index.d.ts",
     "engines": {
         "node": ">=8",
         "npm": ">=5"
@@ -60,7 +61,8 @@
         "rollup-plugin-uglify": "^6.0.4"
     },
     "files": [
-        "dist"
+        "dist",
+        "index.d.ts"
     ],
     "dependencies": {}
 }
