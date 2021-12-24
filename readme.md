@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/v/qnn-react-cron.svg)](https://www.npmjs.com/package/qnn-react-cron)
+
+> 使用中遇到问题欢迎提 issues
+
 <div align="center">
     <h1>QnnReactCron</h1>
     <div>基于React及Antd的cron时间表达式生成器</div>
@@ -5,12 +9,13 @@
     <img width=700 src="./preview.jpg" alt="效果图" />
 </div>
 
+
 ### 声明
 
 该组件改编自
 <a href="https://github.com/zhengxiangqi/react-cron-antd">react-cron-antd</a>
 <br />改编原因：作者长时间未更新组件 导致组件无法正常引用，除了修复了不能组件不能使用的问题外，<br />
-在原基础增加：getCronFns、footer 属性使组件更加灵活，修改 value 值传入后或者更新后自动重新渲染
+在原基础增加：getCronFns、footer、国际化等功能使组件更加灵活强大，修改 value 值传入后或者更新后自动重新渲染
 
 ### 特性
 
@@ -20,6 +25,7 @@
 -   🎉 可结合此组件与 Antd 的下拉及输入组件封装成下拉输入框
 -   🎉 国际化支持
 -   🎉 TypeScript 支持
+
 
 ### 安装
 
@@ -218,6 +224,32 @@ export default ()=>{
     // CronProps 组件接受的 props
     // CronFns 实际上是组件的 ref
     import { CronProps, CronFns } form "qnn-react-cron"
+
+### 为什么没有 antd 组件的样式？
+
+    在 0.5.3 版本后，为了避免打包后的样式影响定制的样式，样式使用按需加载。不再打包进组件代码中。
+ 
+    解决方式1：
+    在 babel 配置中加入以下代码：
+
+    plugins:[
+        [
+            "import",
+            {
+                libraryName: "antd",
+                libraryDirectory: "es",
+                style: "css",
+            },
+            "ant",
+        ]
+    ]
+
+
+    解决方式2：
+    或者直接在项目中引入 antd 样式，如下
+
+    import "antd/dist/antd.min.css"
+
 
 ### LICENSE
 
