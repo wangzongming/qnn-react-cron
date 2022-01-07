@@ -13,14 +13,22 @@ const radioStyle = {
 function YearPane(props) {
 	const {
 		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} },
+		minYear,
+		maxYear,
 	} = useContext(GlobalContext);
+
+	// 初始年
+	const startY = minYear || new Date().getFullYear();
+	// 结束年
+	const endY = maxYear || startY + 60;
+
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
-	const [from, setFrom] = useState(2019);
-	const [to, setTo] = useState(2029);
-	const [offsetFrom, setOffsetFrom] = useState(2019);
+	const [from, setFrom] = useState(startY);
+	const [to, setTo] = useState(endY);
+	const [offsetFrom, setOffsetFrom] = useState(startY);
 	const [offset, setOffset] = useState(1);
-	const [selected, setSelected] = useState(["2019"]);
+	const [selected, setSelected] = useState([startY]);
 
 	const isFirstRender = React.useRef();
 	if (isFirstRender.current !== false) {
@@ -43,7 +51,7 @@ function YearPane(props) {
 			setOffset(parseInt(defaultOffset, 10));
 		} else {
 			setCurrentRadio(5);
-			setSelected(value ? value.split(",") : ["2019"]);
+			setSelected(value ? value.split(",") : [startY]);
 		}
 	}, [value]);
 
@@ -76,15 +84,15 @@ function YearPane(props) {
 	}, []);
 
 	const onChangeFrom = useCallback((v) => {
-		setFrom(v || 2019);
+		setFrom(v || startY);
 	}, []);
 
 	const onChangeTo = useCallback((v) => {
-		setTo(v || 2029);
+		setTo(v || endY);
 	}, []);
 
 	const onChangeOffsetFrom = useCallback((v) => {
-		setOffsetFrom(v || 2019);
+		setOffsetFrom(v || startY);
 	}, []);
 
 	const onChangeOffset = useCallback((v) => {
@@ -92,13 +100,13 @@ function YearPane(props) {
 	}, []);
 
 	const onChangeSelected = useCallback((v) => {
-		setSelected(v.length !== 0 ? v : ["2019"]);
+		setSelected(v.length !== 0 ? v : [startY]);
 	}, []);
 
 	const checkList = useMemo(() => {
 		const disabled = currentRadio !== 5;
 		const checks = [];
-		for (let i = 2019; i < 2067; i++) {
+		for (let i = startY; i < endY; i++) {
 			checks.push(
 				<Col key={i} span={4}>
 					<Checkbox disabled={disabled} value={i.toString()}>
@@ -113,11 +121,11 @@ function YearPane(props) {
 		isFirstRender.current = false;
 	}, []);
 
-	const aTobA = <InputNumber disabled={currentRadio !== 3} min={2019} max={2099} value={from} size="small" onChange={onChangeFrom} style={{ width: 100 }} />;
+	const aTobA = <InputNumber disabled={currentRadio !== 3} min={startY} max={endY} value={from} size="small" onChange={onChangeFrom} style={{ width: 100 }} />;
 
-	const aTobB = <InputNumber disabled={currentRadio !== 3} min={2019} max={2099} value={to} size="small" onChange={onChangeTo} style={{ width: 100 }} />;
+	const aTobB = <InputNumber disabled={currentRadio !== 3} min={startY} max={endY} value={to} size="small" onChange={onChangeTo} style={{ width: 100 }} />;
 
-	const aStartTobA = <InputNumber disabled={currentRadio !== 4} min={2019} max={2099} value={offsetFrom} size="small" onChange={onChangeOffsetFrom} style={{ width: 100 }} />;
+	const aStartTobA = <InputNumber disabled={currentRadio !== 4} min={startY} max={endY} value={offsetFrom} size="small" onChange={onChangeOffsetFrom} style={{ width: 100 }} />;
 	const aStartTobB = <InputNumber disabled={currentRadio !== 4} min={1} max={10} value={offset} size="small" onChange={onChangeOffset} style={{ width: 100 }} />;
 
 	return (

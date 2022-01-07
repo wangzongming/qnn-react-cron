@@ -9,7 +9,6 @@
     <img width=700 src="./preview.jpg" alt="效果图" />
 </div>
 
-
 ### 声明
 
 该组件改编自
@@ -26,7 +25,6 @@
 -   🎉 国际化支持
 -   🎉 TypeScript 支持
 
-
 ### 安装
 
     yarn add qnn-react-cron | npm i qnn-react-cron
@@ -41,17 +39,17 @@
 import React from "react";
 import Cron from "qnn-react-cron";
 
-// 可使用 QnnReactCron.Provider 配置国际化语言
-// 无需配置语言时，可不使用  QnnReactCron.Provider
-// QnnReactCron.Provider 应该包裹于入口组件以实现全部路由下的组件内部语言都被自定义
+// 可使用 Cron.Provider 配置国际化语言
+// 无需配置语言时，可不使用  Cron.Provider
+// Cron.Provider 应该包裹于入口组件以实现全部路由下的组件内部语言都被自定义
 
 export default ()=>{
 
     // language 为可选参数， 具体配置如下
     const language = {
 
-        // 面板标题,  
-        // panel title,  
+        // 面板标题,
+        // panel title,
         paneTitle:{
             second: "秒",
             minute: "分",
@@ -76,6 +74,17 @@ export default ()=>{
             month: "每一月",
             week: "每一周",
             year: "每年",
+        },
+
+        // weel option  周选项
+        week: {
+            sun: "星期日",   
+            mon: "星期一",
+            tue: "星期二",
+            wed: "星期三",
+            thu: "星期四",
+            fri: "星期五",
+            sat: "星期六",
         },
 
         // from [a] to [b] [unit], executed once [unit]    a 到 b 每一个时间单位执行一次
@@ -164,7 +173,14 @@ export default ()=>{
 
     };
 
-    return <QnnReactCron.Provider value={{language}}>
+    return <Cron.Provider value={{
+        // Minimum optional year    最小可选择的年份
+        minYear:new Date().getFullYear(),
+        // Maximum optional year   最大可选择的年份
+		maxYear:new Date().getFullYear() + 60,
+        // language   国际化语言配置
+        language
+    }}>
             <Cron
                 value="* * * * * ? *"
 
@@ -215,7 +231,7 @@ export default ()=>{
                     ]
                 }
             />
-    </QnnReactCron.Provider>
+    </Cron.Provider>
 }
 ```
 
@@ -228,7 +244,7 @@ export default ()=>{
 ### 为什么没有 antd 组件的样式？
 
     在 0.5.3 版本后，为了避免打包后的样式影响定制的样式，样式使用按需加载。不再打包进组件代码中。
- 
+
     解决方式1：
     在 babel 配置中加入以下代码：
 
@@ -249,8 +265,6 @@ export default ()=>{
     或者直接在项目中引入 antd 样式，如下
 
     import "antd/dist/antd.min.css"
-
- 
 
 ### LICENSE
 

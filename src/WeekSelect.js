@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Select } from "antd";
+import GlobalContext from "./GlobalContext";
 
 const weekOptions = {
 	SUN: "星期日",
@@ -11,13 +12,18 @@ const weekOptions = {
 	SAT: "星期六",
 };
 
+export { weekOptions as weekOptionsObj };
+
 function WeekSelect(props) {
+	const {
+		language: { week: weekOptionsByL },
+	} = useContext(GlobalContext);
 	return (
 		<Select size="small" {...props}>
 			{Object.entries(weekOptions).map(([weekCode, weekName]) => {
 				return (
 					<Select.Option key={weekCode} value={weekCode}>
-						{weekName}
+						{weekOptionsByL?.[`${weekCode}`.toLocaleLowerCase()] || weekName}
 					</Select.Option>
 				);
 			})}

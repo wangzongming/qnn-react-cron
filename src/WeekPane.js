@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback, useContext } from "react";
 import { Radio, Checkbox, Row, Col, InputNumber } from "antd";
-import WeekSelect from "./WeekSelect";
+import WeekSelect, { weekOptionsObj } from "./WeekSelect";
 import GlobalContext from "./GlobalContext";
 
 const RadioGroup = Radio.Group;
@@ -15,7 +15,7 @@ const weekOptions = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 function WeekPane(props) {
 	const {
-		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} },
+		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {}, week:weekOptionsByL },
 	} = useContext(GlobalContext);
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(2);
@@ -116,12 +116,13 @@ function WeekPane(props) {
 			return (
 				<Col key={item} span={3}>
 					<Checkbox disabled={disabled} value={item}>
-						{item}
+						{weekOptionsByL?.[`${item}`.toLocaleLowerCase()] || weekOptionsObj[item]}
 					</Checkbox>
 				</Col>
 			);
 		});
 	}, [currentRadio, selected]);
+
 	useEffect(() => {
 		isFirstRender.current = false;
 	}, []);
@@ -133,7 +134,7 @@ function WeekPane(props) {
 	const aStartTobB = <WeekSelect disabled={currentRadio !== 4} value={dayOfWeek} size="small" onChange={onChangeDayOfWeek} style={{ width: 100 }} />;
 
 	const aStartTob2A = <WeekSelect disabled={currentRadio !== 5} value={lastWeekOfMonth} size="small" onChange={onChangeLastWeekOfMonth} style={{ width: 100 }} />;
-  
+
 	return (
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio} style={{ width: "100%" }}>
 			<Radio style={radioStyle} value={1}>
@@ -157,22 +158,7 @@ function WeekPane(props) {
 						&nbsp;，每星期执行一次
 					</>
 				)}
-			</span>
-
-			{/* 以下写法在最新版 antd 中存在问题 */}
-			{/* <Radio style={radioStyle} value={3}>
-				{aTob.week ? (
-					aTob.week(aTobA, aTobB)
-				) : (
-					<>
-						从&nbsp;
-						{aTobA}
-						&nbsp;-&nbsp;
-						{aTobB}
-						&nbsp;，每星期执行一次
-					</>
-				)}
-			</Radio> */}
+			</span> 
 
 			<span style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
 				<Radio style={radioStyle} value={4} />
@@ -187,20 +173,7 @@ function WeekPane(props) {
 						&nbsp;执行一次
 					</>
 				)}
-			</span>
-			{/* <Radio style={radioStyle} value={4}>
-				{aStartTob.week ? (
-					aStartTob.week(aTobA, aTobB)
-				) : (
-					<>
-						本月第&nbsp;
-						{aStartTobA}
-						&nbsp;周的&nbsp;
-						{aStartTobB}
-						&nbsp;执行一次
-					</>
-				)}
-			</Radio> */}
+			</span> 
 
 			<span style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
 				<Radio style={radioStyle} value={5} />
@@ -213,18 +186,7 @@ function WeekPane(props) {
 						&nbsp;执行一次
 					</>
 				)}
-			</span>
-			{/* <Radio style={radioStyle} value={5}>
-				{aStartTob.week2 ? (
-					aStartTob.week2(aStartTob2A)
-				) : (
-					<>
-						本月的最后一个&nbsp;
-						{aStartTob2A}
-						&nbsp;执行一次
-					</>
-				)}
-			</Radio> */}
+			</span> 
 
 			<Radio style={radioStyle} value={6}>
 				{assign || "指定"}
