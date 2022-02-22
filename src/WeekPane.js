@@ -14,9 +14,8 @@ const radioStyle = {
 const weekOptions = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 function WeekPane(props) {
-	const {
-		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {}, week:weekOptionsByL },
-	} = useContext(GlobalContext);
+	const { language = {} } = useContext(GlobalContext);
+	const { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {}, week: weekOptionsByL } = language;
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(2);
 	const [from, setFrom] = useState("SUN");
@@ -158,7 +157,7 @@ function WeekPane(props) {
 						&nbsp;，每星期执行一次
 					</>
 				)}
-			</span> 
+			</span>
 
 			<span style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
 				<Radio style={radioStyle} value={4} />
@@ -173,7 +172,7 @@ function WeekPane(props) {
 						&nbsp;执行一次
 					</>
 				)}
-			</span> 
+			</span>
 
 			<span style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
 				<Radio style={radioStyle} value={5} />
@@ -186,7 +185,7 @@ function WeekPane(props) {
 						&nbsp;执行一次
 					</>
 				)}
-			</span> 
+			</span>
 
 			<Radio style={radioStyle} value={6}>
 				{assign || "指定"}

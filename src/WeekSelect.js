@@ -16,8 +16,9 @@ export { weekOptions as weekOptionsObj };
 
 function WeekSelect(props) {
 	const {
-		language: { week: weekOptionsByL },
+		language = {},
 	} = useContext(GlobalContext);
+	const { week: weekOptionsByL } = language;
 	return (
 		<Select size="small" {...props}>
 			{Object.entries(weekOptions).map(([weekCode, weekName]) => {

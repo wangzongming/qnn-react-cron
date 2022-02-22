@@ -12,8 +12,9 @@ const radioStyle = {
 
 function MonthPane(props) {
 	const {
-		language: { assign, everyTime = {}, aTob = {}, aStartTob = {} },
+		language = {},
 	} = useContext(GlobalContext);
+	const  { assign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
 	const [from, setFrom] = useState(1);

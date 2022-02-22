@@ -10,9 +10,8 @@ const radioStyle = {
 };
 
 function SecondPane(props) {
-	const {
-		language: { assign, everyTime = {}, aTob = {}, aStartTob = {} },
-	} = useContext(GlobalContext);
+	const { language = {} } = useContext(GlobalContext);
+	const { assign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
 	const [from, setFrom] = useState(0);
@@ -114,7 +113,7 @@ function SecondPane(props) {
 
 	const aStartTobA = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offsetFrom} size="small" onChange={onChangeOffsetFrom} style={{ width: 100 }} />;
 	const aStartTobB = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offset} size="small" onChange={onChangeOffset} style={{ width: 100 }} />;
-	
+
 	// return <InputNumber />
 
 	return (

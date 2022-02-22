@@ -42,7 +42,7 @@ function Cron(props) {
 					monthVal = monthRegex.test(monthVal) ? monthVal : "*";
 					weekVal = weekRegex.test(weekVal) ? weekVal : "?";
 					weekVal = dayVal !== "?" ? "?" : weekVal;
-					yearVal = yearRegex.test(yearVal) ? yearVal : "*";
+					yearVal = yearRegex.test(yearVal) ? yearVal : "*"; 
 					setSecond(secondVal);
 					setMinute(minuteValue);
 					setHour(hourVal);

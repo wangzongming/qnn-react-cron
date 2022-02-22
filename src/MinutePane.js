@@ -11,9 +11,8 @@ const radioStyle = {
 };
 
 function MinutePane(props) {
-	const {
-		language: { assign, everyTime = {}, aTob = {}, aStartTob = {} },
-	} = useContext(GlobalContext);
+	const { language = {} } = useContext(GlobalContext);
+	const { assign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
 
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);

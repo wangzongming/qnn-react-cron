@@ -11,11 +11,8 @@ const radioStyle = {
 };
 
 function YearPane(props) {
-	const {
-		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} },
-		minYear,
-		maxYear,
-	} = useContext(GlobalContext);
+	const { language = {}, minYear, maxYear } = useContext(GlobalContext);
+	const { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
 
 	// 初始年
 	const startY = minYear || new Date().getFullYear();
@@ -33,7 +30,7 @@ function YearPane(props) {
 	const isFirstRender = React.useRef();
 	if (isFirstRender.current !== false) {
 		isFirstRender.current = true;
-	}
+	} 
 	useEffect(() => {
 		if (value === "*") {
 			setCurrentRadio(1);
