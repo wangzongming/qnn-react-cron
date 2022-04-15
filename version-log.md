@@ -1,4 +1,7 @@
 
+### 0.8.6
+
+修复 [#11](https://github.com/wangzongming/qnn-react-cron/issues/11)
 
 ### 0.8.5
 
