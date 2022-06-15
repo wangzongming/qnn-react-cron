@@ -1,7 +1,14 @@
 
+### 1.0.0
+
+    新增 时、分、秒面板增加 不指定选项
+    
+    修复 QnnReactCron.Provider 中未配置 language 对象时日面板报错问题 
+
+
 ### 0.8.6
 
-修复 [#11](https://github.com/wangzongming/qnn-react-cron/issues/11)
+    修复 [#11](https://github.com/wangzongming/qnn-react-cron/issues/11)
 
 ### 0.8.5
 

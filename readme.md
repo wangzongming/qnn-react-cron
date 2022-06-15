@@ -2,11 +2,14 @@
 
 > 使用中遇到问题欢迎提 issues
 
+> 如果组件对你有帮助的话，请使用你那个发财的小手帮我点个星星吧！
+
 <div align="center">
     <h1>QnnReactCron</h1>
     <div>基于React及Antd的cron时间表达式生成器</div>
     <br/>
-    <img width=700 src="./preview.jpg" alt="效果图" />
+    <img width=700 src="./preview2.png" alt="效果图" />
+    <img width=700 src="./preview.png" alt="效果图" />
 </div>
 
 
@@ -242,6 +245,9 @@ export default ()=>{
     // CronProps 组件接受的 props
     // CronFns 实际上是组件的 ref
     import { CronProps, CronFns } form "qnn-react-cron"
+
+    // ts 中引用的方式
+    import * as QnnCron form "qnn-react-cron"
 
 ### 为什么没有 antd 组件的样式？
 

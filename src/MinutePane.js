@@ -12,7 +12,7 @@ const radioStyle = {
 
 function MinutePane(props) {
 	const { language = {} } = useContext(GlobalContext);
-	const { assign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
+	const { assign, everyTime = {}, aTob = {}, aStartTob = {}, donTAssign } = language;
 
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
@@ -29,6 +29,8 @@ function MinutePane(props) {
 	useEffect(() => {
 		if (value === "*") {
 			setCurrentRadio(1);
+		} else if (value === "?") {
+			setCurrentRadio(5);
 		} else if (value.indexOf("-") > -1) {
 			setCurrentRadio(2);
 			const [defaultFrom, defaultTo] = value.split("-");
@@ -60,6 +62,9 @@ function MinutePane(props) {
 					break;
 				case 4:
 					onChange(selected.join(","));
+					break;
+				case 5:
+					onChange("?");
 					break;
 				default:
 					break;
@@ -120,6 +125,9 @@ function MinutePane(props) {
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio}>
 			<Radio style={radioStyle} value={1}>
 				{everyTime.minute || "每一分钟"}
+			</Radio>
+			<Radio style={radioStyle} value={5}>
+				{donTAssign || "不指定"}
 			</Radio>
 
 			<Radio style={radioStyle} value={2}>

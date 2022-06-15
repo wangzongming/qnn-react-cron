@@ -11,7 +11,7 @@ const radioStyle = {
 
 function SecondPane(props) {
 	const { language = {} } = useContext(GlobalContext);
-	const { assign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
+	const { assign, everyTime = {}, aTob = {}, aStartTob = {}, donTAssign } = language;
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
 	const [from, setFrom] = useState(0);
@@ -38,6 +38,8 @@ function SecondPane(props) {
 			const [defaultOffsetFrom, defaultOffset] = value.split("/");
 			setOffsetFrom(parseInt(defaultOffsetFrom, 10));
 			setOffset(parseInt(defaultOffset, 10));
+		} else if(value === "?") {
+			setCurrentRadio(5); 
 		} else {
 			setCurrentRadio(4);
 			setSelected(value ? value.split(",") : ["0"]);
@@ -58,6 +60,9 @@ function SecondPane(props) {
 					break;
 				case 4:
 					onChange(selected.join(","));
+					break;
+				case 5:
+					onChange("?");
 					break;
 				default:
 					break;
@@ -120,6 +125,9 @@ function SecondPane(props) {
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio}>
 			<Radio style={radioStyle} value={1}>
 				{everyTime.second || "每一秒钟"}
+			</Radio>
+			<Radio style={radioStyle} value={5}>
+				{donTAssign || "不指定"}
 			</Radio>
 
 			<Radio style={radioStyle} value={2}>

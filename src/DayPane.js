@@ -11,9 +11,8 @@ const radioStyle = {
 };
 
 function DayPane(props) {
-	const {
-		language: { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} },
-	} = useContext(GlobalContext);
+	const { language = {} } = useContext(GlobalContext);
+	const { assign, donTAssign, everyTime = {}, aTob = {}, aStartTob = {} } = language;
 	const { value, onChange } = props;
 	const [currentRadio, setCurrentRadio] = useState(1);
 	const [from, setFrom] = useState(1);
@@ -132,23 +131,31 @@ function DayPane(props) {
 			</Radio>
 
 			<Radio style={radioStyle} value={3}>
-				{aTob.day ? aTob.day(aTobA, aTobB) : <>
-					从&nbsp;
-					{aTobA}
-					&nbsp;-&nbsp;
-					{aTobB}
-					&nbsp;日，每日执行一次
-				</>}
+				{aTob.day ? (
+					aTob.day(aTobA, aTobB)
+				) : (
+					<>
+						从&nbsp;
+						{aTobA}
+						&nbsp;-&nbsp;
+						{aTobB}
+						&nbsp;日，每日执行一次
+					</>
+				)}
 			</Radio>
 
 			<Radio style={radioStyle} value={4}>
-				{aStartTob.day ? aStartTob.day(aStartTobA, aStartTobB) : <>
-					从&nbsp;
-					{aStartTobA}
-					&nbsp;日开始， 每&nbsp;
-					{aStartTobB}
-					&nbsp;日执行一次
-				</>}
+				{aStartTob.day ? (
+					aStartTob.day(aStartTobA, aStartTobB)
+				) : (
+					<>
+						从&nbsp;
+						{aStartTobA}
+						&nbsp;日开始， 每&nbsp;
+						{aStartTobB}
+						&nbsp;日执行一次
+					</>
+				)}
 			</Radio>
 
 			<Radio style={radioStyle} value={5}>
