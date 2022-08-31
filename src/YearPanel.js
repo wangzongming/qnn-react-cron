@@ -30,7 +30,7 @@ function YearPane(props) {
 	const isFirstRender = React.useRef();
 	if (isFirstRender.current !== false) {
 		isFirstRender.current = true;
-	} 
+	}  
 	useEffect(() => {
 		if (value === "*") {
 			setCurrentRadio(1);

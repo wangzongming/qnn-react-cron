@@ -42,6 +42,7 @@ function Cron(props) {
 					monthVal = monthRegex.test(monthVal) ? monthVal : "*";
 					weekVal = weekRegex.test(weekVal) ? weekVal : "?";
 					weekVal = dayVal !== "?" ? "?" : weekVal;
+					// console.log('yearVal', value.split(" "), yearVal, yearRegex.test(yearVal))
 					yearVal = yearRegex.test(yearVal) ? yearVal : "*"; 
 					setSecond(secondVal);
 					setMinute(minuteValue);
@@ -112,7 +113,7 @@ function Cron(props) {
 			});
 	});
 
-	useEffect(() => {
+	useEffect(() => { 
 		onParse();
 	}, [value]);
  
