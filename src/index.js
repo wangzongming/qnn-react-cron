@@ -43,7 +43,8 @@ function Cron(props) {
 					weekVal = weekRegex.test(weekVal) ? weekVal : "?";
 					weekVal = dayVal !== "?" ? "?" : weekVal;
 					// console.log('yearVal', value.split(" "), yearVal, yearRegex.test(yearVal))
-					yearVal = yearRegex.test(yearVal) ? yearVal : "*"; 
+					// return;
+					yearVal = yearRegex.test(yearVal) ? yearVal : "*";  
 					setSecond(secondVal);
 					setMinute(minuteValue);
 					setHour(hourVal);
