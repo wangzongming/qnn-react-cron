@@ -240,7 +240,7 @@ export default ()=>{
 }
 ```
 
-### TypeScript 接口
+### TypeScript 描述
 
     // CronProps 组件接受的 props
     // CronFns 实际上是组件的 ref
@@ -248,6 +248,29 @@ export default ()=>{
 
     // ts 中引用的方式
     import * as QnnCron form "qnn-react-cron"
+
+### TypeScript 项目中使用
+
+##### 方式一
+
+用 * as 引入，这种方式和在ts项目中使用react一样，可能还需要修改 tsconfig.json，自行百度即可。
+
+    import * as QnnCron form "qnn-react-cron"
+
+##### 方式二
+
+在项目的 src 中新增一个 custom.d.ts 然后写入下面内容。 
+
+    declare module "qnn-react-cron" {
+        const content: any;
+        export default content;
+    }
+
+然后在项目中直接引用
+    
+    import QnnCron form "qnn-react-cron"
+
+    ...
 
 ### 为什么没有 antd 组件的样式？
 
