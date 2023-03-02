@@ -129,7 +129,7 @@ function WeekPane(props) {
 	const aTobA = <WeekSelect disabled={currentRadio !== 3} value={from} size="small" onChange={onChangeFrom} style={{ width: 100 }} />;
 	const aTobB = <WeekSelect disabled={currentRadio !== 3} value={to} size="small" onChange={onChangeTo} style={{ width: 100 }} />;
 
-	const aStartTobA = <InputNumber disabled={currentRadio !== 4} min={0} max={23} value={weekOfMonth} size="small" onChange={onChangeWeekOfMonth} style={{ width: 100 }} />;
+	const aStartTobA = <InputNumber disabled={currentRadio !== 4} min={0} max={5} value={weekOfMonth} size="small" onChange={onChangeWeekOfMonth} style={{ width: 100 }} />;
 	const aStartTobB = <WeekSelect disabled={currentRadio !== 4} value={dayOfWeek} size="small" onChange={onChangeDayOfWeek} style={{ width: 100 }} />;
 
 	const aStartTob2A = <WeekSelect disabled={currentRadio !== 5} value={lastWeekOfMonth} size="small" onChange={onChangeLastWeekOfMonth} style={{ width: 100 }} />;

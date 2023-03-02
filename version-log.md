@@ -1,4 +1,7 @@
 
+### 1.0.4
+    
+    优化 https://github.com/wangzongming/qnn-react-cron/issues/29
 
 ### 1.0.3
 
