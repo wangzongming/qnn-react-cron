@@ -117,17 +117,17 @@ export default {
 				[
 					"import",
 					{
-						libraryName: "antd", 
+						libraryName: "antd",
 						libraryDirectory: "es",
 						// style: "css"
-						style: true, 
+						style: true,
 					},
 					"ant",
 				],
 			],
 		}),
 		commonjs(),
-		
+
 		//生成d.ts文件
 		// emitDeclaration(),
 		production && terser(), // minify, but only in production
@@ -138,7 +138,7 @@ function deleteFolder(path) {
 	let files = [];
 	if (fs.existsSync(path)) {
 		files = fs.readdirSync(path);
-		files.forEach(function(file, index) {
+		files.forEach(function (file, index) {
 			let curPath = path + "/" + file;
 			if (fs.statSync(curPath).isDirectory()) {
 				deleteFolder(curPath);

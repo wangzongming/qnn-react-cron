@@ -296,6 +296,11 @@ export default ()=>{
 
     import "antd/dist/antd.min.css"
 
+### 一些参考
+
+1、[配合 antd Form 组件使用，打造一个可控的输入组件](https://github.com/wangzongming/qnn-react-cron/issues/21#issuecomment-1480692706)
+ 
+
 ### LICENSE
 
 MIT
