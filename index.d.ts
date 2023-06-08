@@ -30,7 +30,7 @@ export interface CronProps {
 	/**
 	 * 获取组件方法
 	 */
-	getCronFns?: () => CronFns;
+	getCronFns?: (cronFns: CronFns) => void
 
 	/**
 	 * 配置面板的隐藏, false 即隐藏
