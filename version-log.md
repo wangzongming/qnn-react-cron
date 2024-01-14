@@ -1,4 +1,10 @@
 
+### 1.2.6
+    
+    新增 onChange 事件，当各面板值发生变化时会触发
+
+    优化 显示比较合理面板，而不是直接显示第一个面板，问题：https://github.com/wangzongming/qnn-react-cron/issues/40
+
 ### 1.0.4
     
     优化 https://github.com/wangzongming/qnn-react-cron/issues/29

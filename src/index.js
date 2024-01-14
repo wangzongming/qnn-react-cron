@@ -8,19 +8,52 @@ import MonthPane from "./MonthPane";
 import WeekPane from "./WeekPane";
 import YearPane from "./YearPanel";
 import { secondRegex, minuteRegex, hourRegex, dayRegex, monthRegex, weekRegex, yearRegex } from "./cron-regex";
-import "./index.less"; 
+import "./index.less";
 
 import QnnReactCronContext from "./GlobalContext";
 QnnReactCronContext.displayName = "qnn-react-cron config provider";
 const QnnReactCronContextProvider = QnnReactCronContext.Provider;
- 
+
 const { TabPane } = Tabs;
 
 function Cron(props) {
 	const { language = {} } = useContext(QnnReactCronContext);
 	const { paneTitle = {} } = language;
 
-	const { style, value, onOk, footer, getCronFns, panesShow = {}, defaultTab = "second" } = props;
+	const { onChange, style, value, onOk, footer, getCronFns, panesShow = {} } = props;
+	
+	// 手动制定后不设置
+	let defaultTab = props.defaultTab;
+	if(!defaultTab){
+		try {
+			let [secondVal, minuteValue, hourVal, dayVal, monthVal, weekVal, yearVal] = value.split(" ");
+			secondVal = secondRegex.test(secondVal) ? secondVal : "*";
+			minuteValue = minuteRegex.test(minuteValue) ? minuteValue : "*";
+			hourVal = hourRegex.test(hourVal) ? hourVal : "*";
+			dayVal = dayRegex.test(dayVal) ? dayVal : "*";
+			monthVal = monthRegex.test(monthVal) ? monthVal : "*";
+			weekVal = weekRegex.test(weekVal) ? weekVal : "?";
+			weekVal = dayVal !== "?" ? "?" : weekVal; 
+			yearVal = yearRegex.test(yearVal) ? yearVal : "*";
+			if(secondVal !== "?" && panesShow.second !== false ){ defaultTab="second" }
+			else if(minuteValue !== "?" && panesShow.minute !== false){ defaultTab="minute" }
+			else if(hourVal !== "?" && panesShow.hour !== false){ defaultTab="hour" }
+			else if(dayVal !== "?" && panesShow.day !== false){ defaultTab="day" }
+			else if(monthVal !== "?" && panesShow.month !== false){ defaultTab="month" }
+			else if(weekVal !== "?" && panesShow.week !== false){ defaultTab="week" }
+			else if(yearVal !== "?" && panesShow.year !== false){ defaultTab="year" }
+		} catch (error) {  }
+	}
+	if(!defaultTab){
+		if(panesShow.second !== false ){ defaultTab="second" }
+		else if(panesShow.minute !== false){ defaultTab="minute" }
+		else if(panesShow.hour !== false){ defaultTab="hour" }
+		else if(panesShow.day !== false){ defaultTab="day" }
+		else if(panesShow.month !== false){ defaultTab="month" }
+		else if(panesShow.week !== false){ defaultTab="week" }
+		else if(panesShow.year !== false){ defaultTab="year" } 
+	}
+	 
 	const [currentTab, setCurrentTab] = useState(defaultTab);
 	const [second, setSecond] = useState("*");
 	const [minute, setMinute] = useState("*");
@@ -44,7 +77,7 @@ function Cron(props) {
 					weekVal = dayVal !== "?" ? "?" : weekVal;
 					// console.log('yearVal', value.split(" "), yearVal, yearRegex.test(yearVal))
 					// return;
-					yearVal = yearRegex.test(yearVal) ? yearVal : "*";  
+					yearVal = yearRegex.test(yearVal) ? yearVal : "*";
 					setSecond(secondVal);
 					setMinute(minuteValue);
 					setHour(hourVal);
@@ -105,6 +138,12 @@ function Cron(props) {
 		}
 	};
 
+
+	const changeInc = (value, changeFn, type) => {
+		changeFn(value)
+		onChange && onChange({ type, value });
+	}
+
 	useEffect(() => {
 		getCronFns &&
 			getCronFns({
@@ -114,14 +153,13 @@ function Cron(props) {
 			});
 	});
 
-	useEffect(() => { 
+	useEffect(() => {
 		onParse();
 	}, [value]);
- 
+
 	return (
 		<div
-			className={
-				// styles.cron
+			className={ 
 				"qnn-react-cron"
 			}
 			style={style}
@@ -134,40 +172,40 @@ function Cron(props) {
 			>
 				{panesShow.second !== false && (
 					<TabPane tab={paneTitle.second || "秒"} key="second">
-						<SecondPane value={second} onChange={setSecond} />
+						<SecondPane value={second} onChange={val => changeInc(val, setSecond, "second")} />
 					</TabPane>
 				)}
 				{panesShow.minute !== false && (
 					<TabPane tab={paneTitle.minute || "分"} key="minute">
-						<MinutePane value={minute} onChange={setMinute} />
+						<MinutePane value={minute} onChange={val => changeInc(val, setMinute, "minute")} />
 					</TabPane>
 				)}
 				{panesShow.hour !== false && (
 					<TabPane tab={paneTitle.hour || "时"} key="hour">
-						<HourPane value={hour} onChange={setHour} />
+						<HourPane value={hour} onChange={val => changeInc(val, setHour, "hour")} />
 					</TabPane>
 				)}
 				{panesShow.day !== false && (
 					<TabPane tab={paneTitle.day || "日"} key="day">
-						<DayPane value={day} onChange={onChangeDay} />
+						<DayPane value={day} onChange={val => changeInc(val, onChangeDay, "day")} />
 					</TabPane>
 				)}
 				{panesShow.month !== false && (
 					<TabPane tab={paneTitle.month || "月"} key="month">
-						<MonthPane value={month} onChange={setMonth} />
+						<MonthPane value={month} onChange={val => changeInc(val, setMonth, "month")} />
 					</TabPane>
 				)}
 				{panesShow.week !== false && (
 					<TabPane tab={paneTitle.week || "周"} key="week">
-						<WeekPane value={week} onChange={onChangeWeek} />
+						<WeekPane value={week} onChange={val => changeInc(val, onChangeWeek, "week")} />
 					</TabPane>
 				)}
 				{panesShow.year !== false && (
 					<TabPane tab={paneTitle.year || "年"} key="year">
-						<YearPane value={year} onChange={setYear} />
+						<YearPane value={year} onChange={val => changeInc(val, setYear, "year")} />
 					</TabPane>
 				)}
-			</Tabs> 
+			</Tabs>
 			<div className={"footer"}>
 				{footer === false || footer === null || footer ? (
 					footer

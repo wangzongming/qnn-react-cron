@@ -201,8 +201,8 @@ export default ()=>{
                     year:true,
                 }}
 
-                // 默认显示哪个面板, 默认为 second， 如果隐藏了 second 需要自行设置
-                // The default is second. If second is hidden, you need to set it by yourself
+                // 默认显示哪个面板, 默认为有值且未隐藏的第一个面板 或者 第一个未被隐藏的面板， 设置后将不会自动跳转到有值的面板，而是定死默认显示某个面板
+                // Which panel is displayed by default. The default is the first panel that has a value and is not hidden or the first panel that is not hidden. After setting this parameter, the system does not automatically jump to the panel that has a value
                 defaultTab={"second"}
 
                 // 未自定义底部按钮时，用户点击确认按钮后的回调
@@ -224,8 +224,7 @@ export default ()=>{
 
                 // 自定义底部按钮后需要自行调用方法来或者值
                 // After customizing the bottom button, you need to call the method or value
-                footer={
-                    [
+                footer={[
                         //默认值
                          <Button style={{ marginRight: 10 }} onClick={()=>this.fns.onParse}>
                             解析到UI
@@ -233,8 +232,15 @@ export default ()=>{
                         <Button type="primary"  onClick={()=>console.log(this.fns.getValue)}>
                             生成
                         </Button>
-                    ]
-                }
+                ]}
+
+                // onChange 事件，当值改变时触发 
+                // onChange event, triggered when the value changes 
+                // @param type = "second" | "minute" | "hour" | "day" | "month" | "week" | "year"
+                // @param value = string
+                onChange={({ type, value })=>{
+                    console.log( type, value )
+                }}
             />
     </Cron.Provider>
 }

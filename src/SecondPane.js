@@ -118,9 +118,7 @@ function SecondPane(props) {
 
 	const aStartTobA = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offsetFrom} size="small" onChange={onChangeOffsetFrom} style={{ width: 100 }} />;
 	const aStartTobB = <InputNumber disabled={currentRadio !== 3} min={0} max={59} value={offset} size="small" onChange={onChangeOffset} style={{ width: 100 }} />;
-
-	// return <InputNumber />
-
+  
 	return (
 		<RadioGroup name="radiogroup" value={currentRadio} onChange={onChangeRadio}>
 			<Radio style={radioStyle} value={1}>
