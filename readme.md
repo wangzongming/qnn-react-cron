@@ -250,10 +250,10 @@ export default ()=>{
 
     // CronProps 组件接受的 props
     // CronFns 实际上是组件的 ref
-    import { CronProps, CronFns } form "qnn-react-cron"
+    import { CronProps, CronFns } from "qnn-react-cron"
 
     // ts 中引用的方式
-    import * as QnnCron form "qnn-react-cron"
+    import * as QnnCron from "qnn-react-cron"
 
 ### TypeScript 项目中使用
 
@@ -261,7 +261,7 @@ export default ()=>{
 
 用 * as 引入，这种方式和在ts项目中使用react一样，可能还需要修改 tsconfig.json，自行百度即可。
 
-    import * as QnnCron form "qnn-react-cron"
+    import * as QnnCron from "qnn-react-cron"
 
 ##### 方式二
 
@@ -274,7 +274,7 @@ export default ()=>{
 
 然后在项目中直接引用
     
-    import QnnCron form "qnn-react-cron"
+    import QnnCron from "qnn-react-cron"
 
     ...
 
