@@ -21,10 +21,10 @@ function Cron(props) {
 	const { paneTitle = {} } = language;
 
 	const { onChange, style, value, onOk, footer, getCronFns, panesShow = {} } = props;
-	
+
 	// 手动制定后不设置
 	let defaultTab = props.defaultTab;
-	if(!defaultTab){
+	if (!defaultTab) {
 		try {
 			let [secondVal, minuteValue, hourVal, dayVal, monthVal, weekVal, yearVal] = value.split(" ");
 			secondVal = secondRegex.test(secondVal) ? secondVal : "*";
@@ -33,27 +33,27 @@ function Cron(props) {
 			dayVal = dayRegex.test(dayVal) ? dayVal : "*";
 			monthVal = monthRegex.test(monthVal) ? monthVal : "*";
 			weekVal = weekRegex.test(weekVal) ? weekVal : "?";
-			weekVal = dayVal !== "?" ? "?" : weekVal; 
+			weekVal = dayVal !== "?" ? "?" : weekVal;
 			yearVal = yearRegex.test(yearVal) ? yearVal : "*";
-			if(secondVal !== "?" && panesShow.second !== false ){ defaultTab="second" }
-			else if(minuteValue !== "?" && panesShow.minute !== false){ defaultTab="minute" }
-			else if(hourVal !== "?" && panesShow.hour !== false){ defaultTab="hour" }
-			else if(dayVal !== "?" && panesShow.day !== false){ defaultTab="day" }
-			else if(monthVal !== "?" && panesShow.month !== false){ defaultTab="month" }
-			else if(weekVal !== "?" && panesShow.week !== false){ defaultTab="week" }
-			else if(yearVal !== "?" && panesShow.year !== false){ defaultTab="year" }
-		} catch (error) {  }
+			if (secondVal !== "?" && panesShow.second !== false) { defaultTab = "second" }
+			else if (minuteValue !== "?" && panesShow.minute !== false) { defaultTab = "minute" }
+			else if (hourVal !== "?" && panesShow.hour !== false) { defaultTab = "hour" }
+			else if (dayVal !== "?" && panesShow.day !== false) { defaultTab = "day" }
+			else if (monthVal !== "?" && panesShow.month !== false) { defaultTab = "month" }
+			else if (weekVal !== "?" && panesShow.week !== false) { defaultTab = "week" }
+			else if (yearVal !== "?" && panesShow.year !== false) { defaultTab = "year" }
+		} catch (error) { }
 	}
-	if(!defaultTab){
-		if(panesShow.second !== false ){ defaultTab="second" }
-		else if(panesShow.minute !== false){ defaultTab="minute" }
-		else if(panesShow.hour !== false){ defaultTab="hour" }
-		else if(panesShow.day !== false){ defaultTab="day" }
-		else if(panesShow.month !== false){ defaultTab="month" }
-		else if(panesShow.week !== false){ defaultTab="week" }
-		else if(panesShow.year !== false){ defaultTab="year" } 
+	if (!defaultTab) {
+		if (panesShow.second !== false) { defaultTab = "second" }
+		else if (panesShow.minute !== false) { defaultTab = "minute" }
+		else if (panesShow.hour !== false) { defaultTab = "hour" }
+		else if (panesShow.day !== false) { defaultTab = "day" }
+		else if (panesShow.month !== false) { defaultTab = "month" }
+		else if (panesShow.week !== false) { defaultTab = "week" }
+		else if (panesShow.year !== false) { defaultTab = "year" }
 	}
-	 
+
 	const [currentTab, setCurrentTab] = useState(defaultTab);
 	const [second, setSecond] = useState("*");
 	const [minute, setMinute] = useState("*");
@@ -157,55 +157,58 @@ function Cron(props) {
 		onParse();
 	}, [value]);
 
+
+	const items = [
+		panesShow.second !== false && {
+			key: 'second',
+			label: paneTitle.second || "秒",
+			children: <SecondPane value={second} onChange={val => changeInc(val, setSecond, "second")} />
+		},
+		panesShow.minute !== false && {
+			key: 'minute',
+			label:  paneTitle.minute || "分",
+			children: <MinutePane value={minute} onChange={val => changeInc(val, setMinute, "minute")} />
+		},
+		panesShow.hour !== false && {
+			key: 'hour',
+			label: paneTitle.hour || "时",
+			children: <HourPane value={hour} onChange={val => changeInc(val, setHour, "hour")} />
+		},
+		panesShow.day !== false && {
+			key: 'day',
+			label: paneTitle.day || "日",
+			children: <DayPane value={day} onChange={val => changeInc(val, onChangeDay, "day")} />
+		},
+		panesShow.month !== false && {
+			key: 'month',
+			label: paneTitle.month || "月",
+			children: <MonthPane value={month} onChange={val => changeInc(val, setMonth, "month")} />
+		},
+		panesShow.week !== false && {
+			key: 'week',
+			label: paneTitle.week || "周",
+			children: <WeekPane value={week} onChange={val => changeInc(val, onChangeWeek, "week")} />
+		},
+		panesShow.year !== false && {
+			key: 'year',
+			label: paneTitle.year || "年",
+			children: <YearPane value={year} onChange={val => changeInc(val, setYear, "year")} />
+		},
+	].filter(Boolean);
+
 	return (
 		<div
-			className={ 
+			className={
 				"qnn-react-cron"
 			}
 			style={style}
 		>
 			<Tabs
 				activeKey={currentTab}
-				onChange={setCurrentTab}
-				// className={styles.Tabs}
+				onChange={setCurrentTab} 
 				className={"Tabs"}
-			>
-				{panesShow.second !== false && (
-					<TabPane tab={paneTitle.second || "秒"} key="second">
-						<SecondPane value={second} onChange={val => changeInc(val, setSecond, "second")} />
-					</TabPane>
-				)}
-				{panesShow.minute !== false && (
-					<TabPane tab={paneTitle.minute || "分"} key="minute">
-						<MinutePane value={minute} onChange={val => changeInc(val, setMinute, "minute")} />
-					</TabPane>
-				)}
-				{panesShow.hour !== false && (
-					<TabPane tab={paneTitle.hour || "时"} key="hour">
-						<HourPane value={hour} onChange={val => changeInc(val, setHour, "hour")} />
-					</TabPane>
-				)}
-				{panesShow.day !== false && (
-					<TabPane tab={paneTitle.day || "日"} key="day">
-						<DayPane value={day} onChange={val => changeInc(val, onChangeDay, "day")} />
-					</TabPane>
-				)}
-				{panesShow.month !== false && (
-					<TabPane tab={paneTitle.month || "月"} key="month">
-						<MonthPane value={month} onChange={val => changeInc(val, setMonth, "month")} />
-					</TabPane>
-				)}
-				{panesShow.week !== false && (
-					<TabPane tab={paneTitle.week || "周"} key="week">
-						<WeekPane value={week} onChange={val => changeInc(val, onChangeWeek, "week")} />
-					</TabPane>
-				)}
-				{panesShow.year !== false && (
-					<TabPane tab={paneTitle.year || "年"} key="year">
-						<YearPane value={year} onChange={val => changeInc(val, setYear, "year")} />
-					</TabPane>
-				)}
-			</Tabs>
+				items={items}
+			/>  
 			<div className={"footer"}>
 				{footer === false || footer === null || footer ? (
 					footer

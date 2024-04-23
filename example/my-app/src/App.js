@@ -1,67 +1,16 @@
-# qnn-react-cron [![npm](https://img.shields.io/npm/v/qnn-react-cron.svg)](https://www.npmjs.com/package/qnn-react-cron)  [![npm](https://img.shields.io/npm/dm/qnn-react-cron.svg?style=flat)](https://www.npmjs.com/package/qnn-react-cron)
+import './App.css';
+import { Button } from "antd"
 
-> 使用中遇到问题欢迎提 issues
-
-> 如果组件对你有帮助的话，请使用你那个发财的小手帮我点个星星吧！
-
-<div align="center"> 
-    <div>基于React及Antd的cron时间表达式生成器</div>
-    <br/>
-    <img width=700 src="./preview2.png" alt="效果图" />
-    <img width=700 src="./preview.png" alt="效果图" />
-</div>
-
-
-### 声明
-
-该组件改编自
-<a href="https://github.com/zhengxiangqi/react-cron-antd">react-cron-antd</a>
-<br />改编原因：作者长时间未更新组件 导致组件无法正常引用，除了修复了不能组件不能使用的问题外，<br />
-在原基础增加：getCronFns、footer、国际化等功能使组件更加灵活强大，修改 value 值传入后或者更新后自动重新渲染
-
-### 特性
-
--   🎉 全面支持 cron：秒、分、时、日、月、周、年
--   🎉 日及周条件互斥，自动改变响应值
--   🎉 支持反解析 cron 表达式到 UI
--   🎉 可结合此组件与 Antd 的下拉及输入组件封装成下拉输入框
--   🎉 国际化支持
--   🎉 TypeScript 支持
-
-
-### 安装
-
-    // yarn 安装
-    yarn add qnn-react-cron 
-    
-    // npm 安装
-    npm i qnn-react-cron
-
-
-
-### 对 antd 版本的支持
-请自行根据自己项目中使用的的 antd 版本安装对应的 qnn-react-cron 版本
-
-    qnn-react-cron 1.x 版本使用 antd 4.x
-    qnn-react-cron 2.x 版本使用 antd 5.x
-
-### 预览地址
-
-<a href="https://codesandbox.io/s/qnn-react-cron-fxvbp">codesandbox 点击直达</a>
-
-### 使用
-
-```jsx
-import React from "react";
-import Cron from "qnn-react-cron";
+import React, { useRef } from "react";
+import Cron from "qnn-react-cron2";
 
 // 可使用 Cron.Provider 配置国际化语言
 // 无需配置语言时，可不使用  Cron.Provider
 // Cron.Provider 应该包裹于入口组件以实现全部路由下的组件内部语言都被自定义
 
-export default ()=>{
+const QnnCron = () => {
 
-    const cronFnsRef = useRef();
+  const cronFnsRef = useRef();
 
   // language 为可选参数， 具体配置如下
   const language = {
@@ -257,69 +206,17 @@ export default ()=>{
     />
   </Cron.Provider>
 }
-```
 
-### TypeScript 描述
+function App() {
+  return (
+    <div className="App">
+      <h1 style={{ padding: 50, textAlign: "center" }}>qnn-react-cron 组件测试</h1>
 
-    // CronProps 组件接受的 props
-    // CronFns 实际上是组件的 ref
-    import { CronProps, CronFns } from "qnn-react-cron"
+      <div style={{ width: 800, margin: "0 auto" }}>
+        <QnnCron />
+      </div>
+    </div>
+  );
+}
 
-    // ts 中引用的方式
-    import * as QnnCron from "qnn-react-cron"
-
-### TypeScript 项目中使用
-
-##### 方式一
-
-用 * as 引入，这种方式和在ts项目中使用react一样，可能还需要修改 tsconfig.json，自行百度即可。
-
-    import * as QnnCron from "qnn-react-cron"
-
-##### 方式二
-
-在项目的 src 中新增一个 custom.d.ts 然后写入下面内容。 
-
-    declare module "qnn-react-cron" {
-        const content: any;
-        export default content;
-    }
-
-然后在项目中直接引用
-    
-    import QnnCron from "qnn-react-cron"
-
-    ...
-
-### 为什么没有 antd 组件的样式？
-
-    在 0.5.3 版本后，为了避免打包后的样式影响定制的样式，样式使用按需加载。不再打包进组件代码中。
-    解决方式1：
-    在 babel 配置中加入以下代码：
-
-    plugins:[
-        [
-            "import",
-            {
-                libraryName: "antd",
-                libraryDirectory: "es",
-                style: "css",
-            },
-            "ant",
-        ]
-    ]
-
-
-    解决方式2：
-    或者直接在项目中引入 antd 样式，如下
-
-    import "antd/dist/antd.min.css"
-
-### 一些参考
-
-1、[配合 antd Form 组件使用，打造一个可控的输入组件](https://github.com/wangzongming/qnn-react-cron/issues/21#issuecomment-1480692706)
- 
-
-### LICENSE
-
-MIT
+export default App;
