@@ -1,6 +1,6 @@
 {
 	"name": "qnn-react-cron",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "",
 	"author": "wangzongming",
 	"license": "MIT",
@@ -75,6 +75,7 @@
 		"antd": "^5.16.4",
 		"babel-plugin-named-asset-import": "^0.3.8",
 		"babel-plugin-transform-object-assign": "^6.22.0",
+		"core-js": "2.6.10",
 		"jest-worker": "^29.7.0",
 		"less": "3.10.3",
 		"postcss-preset-env": "^9.5.9"

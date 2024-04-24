@@ -75,7 +75,7 @@ export default {
 					"@babel/preset-env",
 					{
 						modules: false,
-						corejs: 3,
+						corejs: 2,
 						useBuiltIns: "usage",
 						targets: {
 							browsers: ["last 2 versions", "iOS >= 7", "Android >= 5"],
