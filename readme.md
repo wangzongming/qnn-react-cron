@@ -319,6 +319,9 @@ export default ()=>{
 
 1、[配合 antd Form 组件使用，打造一个可控的输入组件](https://github.com/wangzongming/qnn-react-cron/issues/21#issuecomment-1480692706)
  
+## 微信交流群 
+
+<img src="http://img.xiaomingio.top/i/2024/05/13/6641f99345733.jpg"/>
 
 ### LICENSE
 
