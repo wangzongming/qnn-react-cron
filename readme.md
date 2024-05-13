@@ -321,7 +321,7 @@ export default ()=>{
  
 ## 微信交流群 
 
-<img src="http://img.xiaomingio.top/i/2024/05/13/6641f99345733.jpg"/>
+<img src="https://xiaomingio.top/img/i/2024/05/13/6641f99345733.jpg"/>
 
 ### LICENSE
 
