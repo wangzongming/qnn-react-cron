@@ -28,9 +28,9 @@
 -   🎉 国际化支持
 -   🎉 TypeScript 支持
 
-## 微信交流群 
+## 交流群 
 
-<img src="https://xiaomingio.top/img/i/2024/05/13/6641f99345733.jpg"/>
+QQ 交流群: 854445223
 
 ### 安装
 
